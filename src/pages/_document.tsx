@@ -1,13 +1,35 @@
-import { Html, Head, Main, NextScript } from 'next/document'
+import React from 'react';
+import Document, {
+	Html,
+	Head,
+	Main,
+	NextScript,
+	DocumentContext,
+} from 'next/document';
+import { CssBaseline } from '@nextui-org/react';
 
-export default function Document() {
-  return (
-    <Html lang="en">
-      <Head />
-      <body>
-        <Main />
-        <NextScript />
-      </body>
-    </Html>
-  )
+import i18nextConfig from '../../next-i18next.config.js';
+
+class myDocument extends Document {
+	static async getInitialProps(ctx: DocumentContext) {
+		const initialProps = await Document.getInitialProps(ctx);
+		return {
+			...initialProps,
+			styles: React.Children.toArray([initialProps.styles]),
+		};
+	}
+	render(): JSX.Element {
+		const currentLocale =
+			this.props.__NEXT_DATA__.locale ?? i18nextConfig.i18n.defaultLocale;
+		return (
+			<Html lang="en">
+				<Head>{CssBaseline.flush()}</Head>
+				<body>
+					<Main />
+					<NextScript />
+				</body>
+			</Html>
+		);
+	}
 }
+export default myDocument;
