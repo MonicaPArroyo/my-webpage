@@ -1,13 +1,11 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { Button, Container, Navbar, Text, Link } from '@nextui-org/react';
-import logo from 'public/logo.png';
+import { Container, Text} from '@nextui-org/react';
 import Head from 'next/head';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import NextLink from 'next/link';
-import Image from 'next/image';
-import ThemeSwitch from '@/components/ThemeSwitch';
+import Nav from '@/components/Nav';
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => ({
 	props: {
@@ -17,6 +15,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => ({
 
 const Home = (_props: InferGetStaticPropsType<typeof getStaticProps>) => {
 	const router = useRouter();
+	console.log(router);
 	const { t } = useTranslation(['index']);
 
 	const lang = router.locale === 'en' ? 'es' : 'en';
@@ -36,55 +35,7 @@ const Home = (_props: InferGetStaticPropsType<typeof getStaticProps>) => {
 				/>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<Navbar variant="sticky">
-				<Navbar.Toggle aria-label="toggle navigation" showIn="xs" />
-				<Navbar.Brand
-					css={{
-						'@xs': {
-							w: '12%',
-						},
-					}}
-				>
-					<Image src={logo} alt="logo" width="64" height="64" />
-					<Text b color="inherit" hideIn="xs">
-						Mónica P. Arroyo
-					</Text>
-				</Navbar.Brand>
-				<Navbar.Content
-					enableCursorHighlight
-					activeColor="secondary"
-					variant="highlight"
-					hideIn="xs"
-				>
-					<Navbar.Link href="#">About</Navbar.Link>
-					<Navbar.Link isActive href="#">
-						Skills
-					</Navbar.Link>
-					<Navbar.Link href="#">Contact</Navbar.Link>
-				</Navbar.Content>
-				<Navbar.Content>
-					<Navbar.Item>
-						<ThemeSwitch/>
-					</Navbar.Item>
-				</Navbar.Content>
-				<Navbar.Collapse>
-					<Navbar.CollapseItem>
-						<Link color="inherit" href="#">
-							About
-						</Link>
-					</Navbar.CollapseItem>
-					<Navbar.CollapseItem>
-						<Link color="inherit" href="#">
-							Skills
-						</Link>
-					</Navbar.CollapseItem>
-					<Navbar.CollapseItem>
-						<Link color="inherit" href="#">
-							Contact
-						</Link>
-					</Navbar.CollapseItem>
-				</Navbar.Collapse>
-			</Navbar>
+			<Nav/>
 			<Container>
 				<Text>{t('comming-soon')}...</Text>
 				<NextLink href="/" locale={lang}>
