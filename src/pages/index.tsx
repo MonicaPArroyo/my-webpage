@@ -9,14 +9,14 @@ import Nav from '@/components/Nav';
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => ({
 	props: {
-		...(await serverSideTranslations(locale ?? 'en', ['index'])),
+		...(await serverSideTranslations(locale ?? 'en', ['index', 'navbar'])),
 	},
 });
 
 const Home = (_props: InferGetStaticPropsType<typeof getStaticProps>) => {
 	const router = useRouter();
 	console.log(router);
-	const { t } = useTranslation(['index']);
+	const { t } = useTranslation(['index', 'navbar']);
 
 	const lang = router.locale === 'en' ? 'es' : 'en';
 	return (

@@ -2,8 +2,10 @@ import { Navbar, Text, Link } from '@nextui-org/react';
 import Image from 'next/image';
 import ThemeSwitch from '@/components/ThemeSwitch';
 import logo from 'public/logo.png';
+import { useTranslation } from 'next-i18next';
 
 const Nav = () => {
+    const { t } = useTranslation('navbar');
     return (
         <Navbar variant="sticky" isBordered borderWeight='normal'>
 				<Navbar.Toggle aria-label="toggle navigation" showIn="xs" />
@@ -25,11 +27,11 @@ const Nav = () => {
 					variant="highlight"
 					hideIn="xs"
 				>
-					<Navbar.Link href="#About">About</Navbar.Link>
+					<Navbar.Link href="#About">{t('about')}</Navbar.Link>
 					<Navbar.Link href="#Skills">
-						Skills
+                    {t('skills')}
 					</Navbar.Link>
-					<Navbar.Link href="#Contact">Contact</Navbar.Link>
+					<Navbar.Link href="#Contact">{t('contact')}</Navbar.Link>
 				</Navbar.Content>
 				<Navbar.Content>
 					<Navbar.Item>
@@ -39,17 +41,17 @@ const Nav = () => {
 				<Navbar.Collapse>
 					<Navbar.CollapseItem>
 						<Link color="inherit" href="#About">
-							About
+                        {t('about')}
 						</Link>
 					</Navbar.CollapseItem>
 					<Navbar.CollapseItem>
 						<Link color="inherit" href="#Skills">
-							Skills
+                        {t('skills')}
 						</Link>
 					</Navbar.CollapseItem>
 					<Navbar.CollapseItem>
 						<Link color="inherit" href="#Contact">
-							Contact
+                        {t('contact')}
 						</Link>
 					</Navbar.CollapseItem>
 				</Navbar.Collapse>
