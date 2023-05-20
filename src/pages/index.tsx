@@ -7,6 +7,7 @@ import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import NextLink from 'next/link';
 import Image from 'next/image';
+import ThemeSwitch from '@/components/ThemeSwitch';
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => ({
 	props: {
@@ -63,9 +64,7 @@ const Home = (_props: InferGetStaticPropsType<typeof getStaticProps>) => {
 				</Navbar.Content>
 				<Navbar.Content>
 					<Navbar.Item>
-						<Button auto flat href="#">
-							theme
-						</Button>
+						<ThemeSwitch/>
 					</Navbar.Item>
 				</Navbar.Content>
 				<Navbar.Collapse>
